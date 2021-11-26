@@ -8,15 +8,15 @@ i = 0
 def somando():
     
     i = 0
-    i = i + 111
+    i += 111
     print(f'Primeira função. O valor encontrado de i é {i}')
     return i
 
-def somando_2():
+def somando_2(**context):
 
-    i = i + 222
+    i = context['task_instance'].xcom_pull(task_ids='somando')
+    i += 222
     print(f'Segunda função. O valor encontrado de i é {i}')
-    return i
 
 
 args = {
@@ -31,11 +31,12 @@ with DAG(
 ) as dag:
 
     sum_1 = PythonOperator(
-        task_id='sumando',
+        task_id='somando',
         python_callable=somando)
 
     sum_2 = PythonOperator(
-        task_id='sumando_2',
-        python_callable=somando_2)
+        task_id='somando_2',
+        python_callable=somando_2,
+        provide_context=True)
 
     sum_1 >> sum_2

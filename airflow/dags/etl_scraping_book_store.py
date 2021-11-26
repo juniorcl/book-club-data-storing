@@ -134,13 +134,16 @@ def webscraping():
                 dict_product['availability'].append(availability)
                 dict_product['number_reviews'].append(number_reviews)
 
-    return pd.DataFrame(dict_product)
+    return dict_product
 
 
 def data_cleaning(**context):
 
     # using data product from webscraping function
-    df_product = context['task_instance'].xcom_pull(task_ids='webscraping')
+    dict_product = context['task_instance'].xcom_pull(task_ids='webscraping')
+    
+    # converting to dataframe
+    df_product = pd.DataFrame(dict_product)
 
     # extract the category name
     df_product['category'] = df_product['category'].str.extract(r'(\w+\s?\w+\s?\w+)')
@@ -179,16 +182,19 @@ def data_cleaning(**context):
     # drop columns
     df_product = df_product.drop(columns=['availability'])
 
-    return df_product
+    return df_product.to_dict(orient='list')
 
 
 def inserting(**context):
 
     # using data product from webscraping function
-    df_product = context['task_instance'].xcom_pull(task_ids='data_cleaning')
+    dict_product = context['task_instance'].xcom_pull(task_ids='data_cleaning')
+
+    # converting to pandas dataframe
+    df_product = pd.DataFrame(dict_product)
 
     # connecting with bookclub_dp.sqlite
-    engine = create_engine('sqlite:////opt/airflow/db', echo=False)
+    engine = create_engine('sqlite:////opt/airflow/db/bookclub_db.sqlite', echo=False)
     conn = engine.connect()
 
     # inserting
