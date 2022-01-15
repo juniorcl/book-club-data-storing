@@ -50,7 +50,7 @@ However, some improvements must be implemented in the future. Change the databas
 
 * Implementation of a MySQL database using Docker.
 
-* Connect Airflow and MySQL to collect and inserto into new database.
+* Connect Airflow and MySQL to collect and insert into new database.
 
 <!--
 ## 4.0 Top 3 Data Insights
