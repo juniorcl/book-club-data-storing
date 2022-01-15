@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  mysqlserver:
+    container_name: 'mysql-server'
+    image: 'mysql:8'
+    restart: 'always'
+    environment:
+      MYSQL_DATABASE: 'bookclub'
+      MYSQL_ROOT_PASSWORD: 'admin'
+    ports:
+      - '3306:3306'
+    volumes:
+      - './mysqldb:/var/lib/mysql'
+    networks:
+      airflow_default:
+        ipv4_address: '172.23.0.9'
+
+networks:
+  airflow_default:
+    external: true
+    name: airflow_default
