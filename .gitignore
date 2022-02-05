@@ -153,3 +153,9 @@ dmypy.json
 cython_debug/
 
 # End of https://www.toptal.com/developers/gitignore/api/jupyternotebooks,python
+
+# mysql
+db/mysqldb/*
+
+# airflow
+airflow/logs/*

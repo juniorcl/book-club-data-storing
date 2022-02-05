@@ -194,7 +194,7 @@ def inserting(**context):
     df_product = pd.DataFrame(dict_product)
 
     # connecting with bookclub_dp.sqlite
-    engine = create_engine('sqlite:////opt/airflow/db/bookclub_db.sqlite', echo=False)
+    engine = create_engine('mysql+pymysql://root:admin@172.23.0.9:3306/bookclub', echo=False)
     conn = engine.connect()
 
     # inserting

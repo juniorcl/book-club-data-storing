@@ -30,17 +30,15 @@ A recommendation system can facilitate recommending books for sale or for exchan
 
 The strategy is focused on collecting, transforming and loading (ETL) the data from the website and storage it into a database.
 
-The data is collected using the BeatifulSoup library. This library allows the data collection directly from the HTML website. After data collection, the data will be stored and organized into SQLite database. Finally, the schedule to run the scripts is made by the Airflow.
+The data is collected using the BeatifulSoup library. This library allows the data collection directly from the HTML website. After data collection, the data will be stored and organized into MySQL database. Finally, the schedule to run the scripts is made by the Airflow.
 
 ## 4.0 Conclusions
 
-The project is about of creation a database with all the books and their informations. The ETL script is executed every day to collect and update the data of the SQLite database.
-
-However, some improvements must be implemented in the future. Change the database from SQLite to MySQL in Docker.
+The project is about of creation a database with all the books and their informations. The ETL script is executed every day to collect and update the data of the MySQL database.
 
 ## 5.0 Lessons Learned
 
-* Creation of a SQLite database.
+* Creation of a MySQL database using docker.
 
 * Implementation of the Airflow in Docker.
 
@@ -48,9 +46,7 @@ However, some improvements must be implemented in the future. Change the databas
 
 ## 6.0 Next Steps
 
-* Implementation of a MySQL database using Docker.
-
-* Connect Airflow and MySQL to collect and insert into new database.
+* Improve the ETL.
 
 <!--
 ## 4.0 Top 3 Data Insights
